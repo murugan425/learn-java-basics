@@ -17,15 +17,16 @@ public class HarmonicSummation {
 	 */
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
-		int harmonicSum = 0;
+		float harmonicSum = 0;
 		DataInputStream in = new DataInputStream(System.in);
 		
 		System.out.println("Enter the value of N:::::");
-		int N = 1;
+		float N = 1;
 		try {
-			N = Integer.parseInt(in.readLine());
-			for (int i=1;i<N;i++) {
-				harmonicSum += 1/i; 
+			N = Float.valueOf(in.readLine()).floatValue();
+			while (N>0) {
+				harmonicSum += (1/N);
+				N--;
 			}
 			System.out.println("The Harmonic Summation value is " +harmonicSum );			
 		} catch (NumberFormatException e) {
