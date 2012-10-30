@@ -18,11 +18,14 @@ public class CmdLineTest {
 		
 		count = args.length;
 		System.out.println("Number of Arguments :::: "+ count);
-		while (i<count) {
+		/*while (i<count) {
 			string = args[i];
 			i++;
-			System.out.println(1 +"::: Java is" + string+".");
-		}
+			System.out.println(i +"::: Java is" + string+".");
+		}*/
+		for (String str : args) {
+			System.out.println("Java is "+str+" !");
+		} 
 
 	}
 
