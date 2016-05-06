@@ -33,7 +33,7 @@ public class PrimitiveArrays {
 		}
 		
 		//Simple example of int arrays.
-		int iNumbers[] = {4,65,31};
+		int[] iNumbers = {4,65,31};
 		
 		for(int i=0; i<iNumbers.length;i++) {
 			System.out.println("Number " + (i+1) + " is "+ iNumbers[i]);

@@ -21,7 +21,7 @@ public class ReadTextFile {
 	public static void main(String[] args) {
 		// Actual Path -
 		// D:\Workspace\Java_V1.0\JavaBasics\src\com\tamil\learn\java\basics\files\
-		String filePath = "D:\\Workspace\\Java_V1.0\\JavaBasics\\src\\com\\tamil\\learn\\java\\basics\\files\\";
+		String filePath = "E:\\ProgramData\\Repository\\GITV0.0\\LearnJavaBasics\\src\\com\\tamil\\learn\\java\\basics\\files\\";
 		// Here we are adding \\ in the path because in java '\n\b\t' will be
 		// considered as special non-printing characters.
 		String fileName = "SampleText1.txt";

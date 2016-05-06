@@ -20,7 +20,7 @@ public class Generic {
 	public static void main(String[] args) {
 
 		// If a specific class operates on a single or multiple objects of the
-		// same datatype or class, we make us of the concept of Generics to
+		// same datatype or class, we make use of the concept of Generics to
 		// define the datatype on which the class will operate.
 
 		// Before JDK1.5 we need to manually type cast while getting a obj from
@@ -39,19 +39,19 @@ public class Generic {
 		// new ArrayList<String> - the data type like <String> in the object
 		// variable is not variable from JDK1.7
 
-		ArrayList<String> list2 = new ArrayList<>();
+		ArrayList list2 = new ArrayList();
 		list2.add("Alpha");
 		list2.add("Beta");
 		list2.add("Gamma");
 
-		String secondElement = list2.get(1);
+		String secondElement = (String) list2.get(1);
 		System.out
 				.println("2nd Element is - No casting needed because the generic <> defines what object the contains "
 						+ list2.get(1));
 
 		// Some objects has more than one type of argument say for example
 		// HashMap..,
-		HashMap<Integer, String> map = new HashMap<Integer, String>();
+		HashMap map = new HashMap();
 
 	}
 }

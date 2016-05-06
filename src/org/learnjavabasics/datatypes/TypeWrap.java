@@ -7,6 +7,7 @@ package org.learnjavabasics.datatypes;
  * @author MURUGAN NAGARAJAN
  * @created date Jul 22, 2012 / 9:47:56 AM
  */
+@SuppressWarnings("unused")
 public class TypeWrap {
 
 	/**
@@ -22,6 +23,11 @@ public class TypeWrap {
 		float f1 = 3.142f;	//4 byte
 		float f2 = 3.4e+38f;	//4 byte
 		double d = 1.7e+308;	//8 byte
+		
+		//Multi variable declaration - 4 variables declared and two are initialized.
+		int A, B= 50, C =59,
+				D;
+		
 		
 		System.out.println(" c = "+ c);
 		System.out.println(" b = "+ b);

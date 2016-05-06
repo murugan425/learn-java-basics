@@ -20,7 +20,7 @@ public class TypeCasting {
 		byte bValue = 1; 	//1 byte -128 to 127 == 256 max = 2pow8
 		short sValue = 32767; 	//2 bytes - 2 pow 16
 		int iValue = 2147483647;	//4 bytes - 2 poe 32
-		long lValue = -9223372036854775808l; //8 bytes - 2 pow 64
+		long lValue = -9223372036854775807l; //8 bytes - 2 pow 64
 		
 		float fValue = 45454.9f;
 		double dValue = 874.90932;

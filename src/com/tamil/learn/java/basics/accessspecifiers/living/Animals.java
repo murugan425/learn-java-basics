@@ -12,7 +12,7 @@ package com.tamil.learn.java.basics.accessspecifiers.living;
 public class Animals {
 
 	private String category; 
-	// Can be accessed only by methods outside the classes.
+	// Can be accessed only by methods INSIDE the classes.
 	protected String family; // Can be accessed in child classes.
 
 	/**
