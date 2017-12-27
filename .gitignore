@@ -15,6 +15,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+out/production/
 
 # External tool builders
 .externalToolBuilders/
@@ -58,7 +59,6 @@ local.properties
 *.tlb
 *.tli
 *.tlh
-*.tmp
 *.vspscc
 .builds
 *.dotCover
@@ -161,3 +161,5 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+.idea/
+learn-java-basics.iml
