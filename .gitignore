@@ -163,3 +163,6 @@ pip-log.txt
 .DS_Store
 .idea/
 learn-java-basics.iml
+
+#Java
+*.class
