@@ -22,6 +22,12 @@ public class SimpleMethods {
         System.out.println(isLeapCheck.isLeapYear(1600));
         System.out.println(isLeapCheck.isLeapYear(2017));
         System.out.println(isLeapCheck.isLeapYear(2000));
+
+        NumberOfDaysInMonth numberOfDaysInMonth = new NumberOfDaysInMonth();
+        System.out.println(numberOfDaysInMonth.getDaysInMonth(1, 2020));
+        System.out.println(numberOfDaysInMonth.getDaysInMonth(1, -2020));
+        System.out.println(numberOfDaysInMonth.getDaysInMonth(2, 2018));
+        System.out.println(numberOfDaysInMonth.getDaysInMonth(-1, 2020));
     }
 }
 
@@ -59,5 +65,27 @@ class LeapYear {
             isLeap = true;
         }
         return isLeap;
+    }
+}
+
+class NumberOfDaysInMonth {
+    public static int getDaysInMonth(int month, int year) {
+        LeapYear isLeapCheck = new LeapYear();
+        if(month < 1 || month > 12 || year < 1 || year > 9999)  {
+            return -1;
+        }
+        switch (month) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                return 31;
+            case 4: case 6: case 9: case 11:
+                return 30;
+            case 2:
+                if (isLeapCheck.isLeapYear(year)) {
+                    return 29;
+                }
+                return 28;
+            default:
+                return -1;
+        }
     }
 }
