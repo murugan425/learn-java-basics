@@ -166,3 +166,4 @@ learn-java-basics.iml
 
 #Java
 *.class
+target/
