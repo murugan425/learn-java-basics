@@ -4,6 +4,8 @@
 package com.tamil.learn.java.features.eight.lambda;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -34,9 +36,19 @@ public class LambdaExample3 {
 		RandomStringUtils randStr = new RandomStringUtils();
 		
 		List<Employee> employees = IntStream.range(0, 10).
-				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), generateDate())) .collect(Collectors.toList());
-		 
-		log.info("Employees List generated: " + employees.toString());		
+				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), generateDate())) .collect(Collectors.toList()); 
+		log.info(employees.size() + " Employees Generated");	
+		employees.forEach(emp -> System.out.println(emp));
+		
+		Collections.sort(employees, new Comparator<Employee>() {
+			@Override
+			public int compare(Employee emp1, Employee emp2) {
+				return emp1.getDob().compareTo(emp2.getDob());
+			}			
+		});
+		
+		log.info(employees.size() + " Employees Sorted");	
+		employees.forEach(emp -> System.out.println(emp));
 	}
 	
 	public static LocalDate generateDate() {
