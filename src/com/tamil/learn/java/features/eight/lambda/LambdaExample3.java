@@ -50,8 +50,7 @@ public class LambdaExample3 {
 		log.info(employees.size() + " Employees Sorted - Normal way");	
 		employees.forEach(emp -> System.out.println(emp));
 		
-		Collections.sort(employees, (Employee emp1, Employee emp2) -> 
-		emp1.getDob().compareTo(emp2.getDob()));		
+		Collections.sort(employees, (emp1, emp2) -> emp1.getDob().compareTo(emp2.getDob()));		
 		log.info(employees.size() + " Employees Sorted using Lambda Expression");	
 		employees.forEach(emp -> System.out.println(emp));
 	}
