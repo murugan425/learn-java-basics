@@ -43,7 +43,7 @@ public class LambdaExample4 {
 		};	
 		*/
 		//Modified the function to a lambda expression
-		UpperConcat uc = (empName, empDob) -> "Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
+		UpperConcat uc = (empName, empDob) -> "Anonymous Class::: "+ "Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
 	
 		ConcatDetailedImpl cdImpl = new ConcatDetailedImpl();
 		ConcatSimpleImpl csImpl = new ConcatSimpleImpl();
@@ -60,9 +60,9 @@ public class LambdaExample4 {
 }
 
 class ConcatDetailedImpl {
-	UpperConcat uc = (empName, empDob) -> this.toString() + "Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
+	UpperConcat uc = (empName, empDob) -> this.getClass().getSimpleName() + "::: Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
 }
 
 class ConcatSimpleImpl {
-	UpperConcat uc = (empName, empDob) -> this.toString() + " / "+ empName.toUpperCase() + " / " + empDob;
+	UpperConcat uc = (empName, empDob) -> this.getClass().getSimpleName() + "::: / "+ empName.toUpperCase() + " / " + empDob;
 }
