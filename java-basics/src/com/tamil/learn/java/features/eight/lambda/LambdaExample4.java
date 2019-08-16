@@ -42,15 +42,27 @@ public class LambdaExample4 {
 			}
 		};	
 		*/
-		
 		//Modified the function to a lambda expression
 		UpperConcat uc = (empName, empDob) -> "Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
 	
-		employees.forEach(emp -> System.out.println(printEmployee(uc, emp)));	
+		ConcatDetailedImpl cdImpl = new ConcatDetailedImpl();
+		ConcatSimpleImpl csImpl = new ConcatSimpleImpl();
+		
+		employees.forEach(emp -> System.out.println(printEmployee(uc, emp)));
+		employees.forEach(emp -> System.out.println(printEmployee(csImpl.uc, emp)));
+		employees.forEach(emp -> System.out.println(printEmployee(cdImpl.uc, emp)));
 		
 	}
 
 	public final static String printEmployee(UpperConcat uc, Employee emp) {
 		return uc.upperAndConcat(emp.getName(), emp.getDob().toString());
 	}
+}
+
+class ConcatDetailedImpl {
+	UpperConcat uc = (empName, empDob) -> this.toString() + "Name: " + empName.toUpperCase() + " / Date of Birth: " + empDob;
+}
+
+class ConcatSimpleImpl {
+	UpperConcat uc = (empName, empDob) -> this.toString() + " / "+ empName.toUpperCase() + " / " + empDob;
 }
