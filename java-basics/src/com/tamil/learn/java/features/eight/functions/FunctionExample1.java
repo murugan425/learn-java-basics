@@ -22,10 +22,11 @@ public class FunctionExample1 {
 	public static void main(String[] args) {
 		RandomStringUtils randStr = new RandomStringUtils();
 		FunctionPredicate predicates = new FunctionPredicate();
+		FunctionSupplier suppliers = new FunctionSupplier();
 		
 		@SuppressWarnings("static-access")
 		List<Employee> employees = IntStream.range(0, 10).
-				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), generateDate())).collect(Collectors.toList()); 
+				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), suppliers.get())).collect(Collectors.toList()); 
 		log.info(employees.size() + " Employees Generated");	
 		employees.forEach(emp -> System.out.println(emp));
 
@@ -49,12 +50,5 @@ public class FunctionExample1 {
 	public static LocalDate ageCondition(Integer age) {		
 		return LocalDate.now().minusYears(age);
 	}
-	
-	public static LocalDate generateDate() {
-		Random rand = new Random();
-		int minDay = (int) LocalDate.now().minusYears(60).toEpochDay();
-		int maxDay = (int) LocalDate.now().minusYears(10).toEpochDay();
-		long randomDay = minDay + rand.nextInt(maxDay - minDay);
-		return LocalDate.ofEpochDay(randomDay);
-	}
+
 }
