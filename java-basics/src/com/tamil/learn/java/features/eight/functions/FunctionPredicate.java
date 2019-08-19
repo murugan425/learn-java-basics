@@ -6,12 +6,8 @@ package com.tamil.learn.java.features.eight.functions;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
-import java.util.Random;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import org.apache.commons.lang3.RandomStringUtils;
 
 import com.tamil.learn.java.basics.vo.Employee;
 
@@ -24,11 +20,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FunctionPredicate {
 	
+	Function<Employee, String> formatEmp = (emp) -> 
+		String.format("%s dob is %s [age: %d] and he earns %02d $ per hour.", 
+			emp.getName().toUpperCase(), emp.getDob(), Period.between(emp.getDob(), LocalDate.now()).getYears(), emp.getSalary());
+	
 	//Predicates helps to minimize the complex multiple if conditions that can be passed as arguments now.
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> filterCond) {
 		employees.forEach(emp -> {
 			if(filterCond.test(emp)) {
-				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
+				System.out.println(formatEmp.apply(emp));
 			}
 		});
 	}
@@ -36,14 +36,8 @@ public class FunctionPredicate {
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> minAge, Predicate<Employee> maxAge) {
 		employees.forEach(emp -> {
 			if(minAge.and(maxAge).test(emp)) {
-				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
+				System.out.println(formatEmp.apply(emp));
 			}
 		});
-	}
-	
-	public Integer getAge(LocalDate empDob) {
-		Period period = Period.between(empDob, LocalDate.now());
-		return period.getYears();
-	}
-	
+	}	
 }
