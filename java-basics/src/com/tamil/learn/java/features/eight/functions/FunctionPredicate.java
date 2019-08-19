@@ -33,6 +33,14 @@ public class FunctionPredicate {
 		});
 	}
 	
+	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> minAge, Predicate<Employee> maxAge) {
+		employees.forEach(emp -> {
+			if(minAge.and(maxAge).test(emp)) {
+				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
+			}
+		});
+	}
+	
 	public Integer getAge(LocalDate empDob) {
 		Period period = Period.between(empDob, LocalDate.now());
 		return period.getYears();
