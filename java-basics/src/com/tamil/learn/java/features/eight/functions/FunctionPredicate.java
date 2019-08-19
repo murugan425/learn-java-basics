@@ -24,6 +24,10 @@ public class FunctionPredicate {
 		String.format("%s dob is %s [age: %d] and he earns %02d $ per hour.", 
 			emp.getName().toUpperCase(), emp.getDob(), Period.between(emp.getDob(), LocalDate.now()).getYears(), emp.getSalary());
 	
+	Function<Employee, String> formatEmpNoAge = (emp) -> 
+		String.format("%s dob is %s and he earns %02d $ per hour.", 
+			emp.getName().toUpperCase(), emp.getDob(), emp.getSalary());
+	
 	//Predicates helps to minimize the complex multiple if conditions that can be passed as arguments now.
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> filterCond) {
 		employees.forEach(emp -> {
@@ -36,7 +40,7 @@ public class FunctionPredicate {
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> minAge, Predicate<Employee> maxAge) {
 		employees.forEach(emp -> {
 			if(minAge.and(maxAge).test(emp)) {
-				System.out.println(formatEmp.apply(emp));
+				System.out.println(formatEmpNoAge.apply(emp));
 			}
 		});
 	}	
