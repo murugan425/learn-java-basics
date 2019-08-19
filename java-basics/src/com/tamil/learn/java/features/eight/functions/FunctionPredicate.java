@@ -36,11 +36,12 @@ public class FunctionPredicate {
 		log.info(employees.size() + " Employees Generated");	
 		employees.forEach(emp -> System.out.println(emp));
 
-		log.info("********Employees > 25 Years old********");
-		filterEmployeesByAge(employees, emp -> emp.getDob().isBefore(LocalDate.now().minusYears(25)));
+		int age = 40;
+		log.info("********Employees > "+ age +" Years old********");
+		filterEmployeesByAge(employees, emp -> emp.getDob().isBefore(ageCondition(age)));
 		
-		log.info("********Employees < 25 Years old********");
-		filterEmployeesByAge(employees, emp -> emp.getDob().isAfter(LocalDate.now().minusYears(25)));
+		log.info("********Employees < "+ age +" Years old********");
+		filterEmployeesByAge(employees, emp -> emp.getDob().isAfter(ageCondition(age)));
 		
 	}
 	
@@ -66,4 +67,7 @@ public class FunctionPredicate {
 		});
 	}
 	
+	public static LocalDate ageCondition(Integer age) {		
+		return LocalDate.now().minusYears(age);
+	}
 }
