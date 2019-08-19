@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,24 +30,17 @@ public class FunctionPredicate {
 	public static void main(String[] args) {
 		RandomStringUtils randStr = new RandomStringUtils();
 		
+		@SuppressWarnings("static-access")
 		List<Employee> employees = IntStream.range(0, 10).
 				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), generateDate())).collect(Collectors.toList()); 
 		log.info(employees.size() + " Employees Generated");	
 		employees.forEach(emp -> System.out.println(emp));
 
 		log.info("********Employees > 25 Years old********");
-		employees.forEach(emp -> {
-			if(emp.getDob().isBefore(LocalDate.now().minusYears(25))) {
-				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
-			}
-		});
+		filterEmployeesByAge(employees, emp -> emp.getDob().isBefore(LocalDate.now().minusYears(25)));
 		
 		log.info("********Employees < 25 Years old********");
-		employees.forEach(emp -> {
-			if(emp.getDob().isAfter(LocalDate.now().minusYears(25))) {
-				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
-			}
-		});
+		filterEmployeesByAge(employees, emp -> emp.getDob().isAfter(LocalDate.now().minusYears(25)));
 		
 	}
 	
@@ -62,5 +56,14 @@ public class FunctionPredicate {
 		Period period = Period.between(empDob, LocalDate.now());
 		return period.getYears();
 	}
-
+	
+	//Predicates helps to minimize the complex multiple if conditions that can be passed as arguments now.
+	public static void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> filterCond) {
+		employees.forEach(emp -> {
+			if(filterCond.test(emp)) {
+				System.out.println(emp + " / Age is : " + getAge(emp.getDob()));
+			}
+		});
+	}
+	
 }
