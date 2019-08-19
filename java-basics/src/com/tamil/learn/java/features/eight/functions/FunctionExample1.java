@@ -24,7 +24,7 @@ public class FunctionExample1 {
 		FunctionPredicate predicates = new FunctionPredicate();
 		FunctionSupplier suppliers = new FunctionSupplier();
 		
-		Function<Integer, LocalDate> ageCriteria = (Integer age) -> LocalDate.now().minusYears(age);
+		Function<Integer, LocalDate> yearCriteria = (year) -> LocalDate.now().minusYears(year);
 		
 		@SuppressWarnings("static-access")
 		List<Employee> employees = IntStream.range(0, 10).
@@ -32,16 +32,16 @@ public class FunctionExample1 {
 		log.info(employees.size() + " Employees Generated");	
 		employees.forEach(emp -> System.out.println(emp));
 
-		int age = 25;
-		Predicate<Employee> empGt25 = emp -> emp.getDob().isBefore(ageCriteria.apply(age));
-		log.info("********Employees > "+ age +" Years old********");
+		int yrs = 25;
+		Predicate<Employee> empGt25 = emp -> emp.getDob().isBefore(yearCriteria.apply(yrs));
+		log.info("********Employees > "+ yrs +" Years old********");
 		predicates.filterEmployeesByAge(employees, empGt25);
 		
-		log.info("********Employees < "+ age +" Years old********");
+		log.info("********Employees < "+ yrs +" Years old********");
 		predicates.filterEmployeesByAge(employees, empGt25.negate());
 		
 		log.info("********Employees > 25 && < 50  Years old********");
-		Predicate<Employee> empLt50 = emp -> emp.getDob().isAfter(ageCriteria.apply(50));		
+		Predicate<Employee> empLt50 = emp -> emp.getDob().isAfter(yearCriteria.apply(50));		
 		//Chaining Predicates
 		predicates.filterEmployeesByAge(employees, empGt25.and(empLt50));
 		//Method overloading
