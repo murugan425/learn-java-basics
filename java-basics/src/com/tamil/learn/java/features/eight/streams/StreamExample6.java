@@ -6,10 +6,7 @@ package com.tamil.learn.java.features.eight.streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -45,7 +42,9 @@ public class StreamExample6 {
 			flatMap(dept -> dept.getEmployees().stream()).forEach(System.out::println);
 		
 		List<Employee> employees = departments.stream().flatMap(dept -> dept.getEmployees().stream()).
-				sorted((e1,e2)->e1.getDob().compareTo(e2.getDob())).collect(Collectors.toList());
+				sorted((e1,e2)->e1.getDob().compareTo(e2.getDob())).
+				collect(ArrayList::new, ArrayList::add, ArrayList::addAll); 
+				//[supplier - new result type, accumulator - collects the results, combiner]
 		System.out.println("Totally, " + employees.size() + " Employees generated");
 		employees.forEach(System.out::println);			
 	}
