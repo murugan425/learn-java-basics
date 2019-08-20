@@ -22,13 +22,13 @@ public class FunctionExample1 {
 	public static void main(String[] args) {
 		RandomStringUtils randStr = new RandomStringUtils();
 		FunctionPredicate predicates = new FunctionPredicate();
-		FunctionSupplier suppliers = new FunctionSupplier();
+		FunctionSupplier supplier = new FunctionSupplier();
 		
 		Function<Integer, LocalDate> yearCriteria = (year) -> LocalDate.now().minusYears(year);
 		
 		@SuppressWarnings("static-access")
 		List<Employee> employees = IntStream.range(0, 10).
-				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), suppliers.get())).collect(Collectors.toList()); 
+				mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), supplier.dateSupplier.get())).collect(Collectors.toList()); 
 		log.info(employees.size() + " Employees Generated");	
 		employees.forEach(emp -> System.out.println(emp));
 
