@@ -27,6 +27,7 @@ public class FunctionPredicate {
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> filterCond) {
 		employees.forEach(emp -> {
 			if(filterCond.test(emp)) {
+				fn.splitName.accept(emp.getName().toUpperCase());
 				System.out.println(fn.formatEmp.apply(emp));
 			}
 		});
