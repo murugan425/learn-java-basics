@@ -6,6 +6,7 @@ package com.tamil.learn.java.features.eight.streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -46,7 +47,16 @@ public class StreamExample6 {
 				collect(ArrayList::new, ArrayList::add, ArrayList::addAll); 
 				//[supplier - new result type, accumulator - collects the results, combiner]
 		System.out.println("Totally, " + employees.size() + " Employees generated");
-		employees.forEach(System.out::println);			
+		employees.forEach(System.out::println);
+		
+		Map<Integer, List<Employee>> employeesByAge = departments.stream().flatMap(dept -> dept.getEmployees().stream()).
+				sorted((e1,e2)->e1.getDob().compareTo(e2.getDob())).
+				collect(Collectors.groupingBy(emp -> emp.getDob().getYear()));
+		employeesByAge.entrySet().forEach(empEntry -> System.out.println(empEntry.getKey()));
+		employeesByAge.forEach((k,v)->{
+			System.out.println(String.format("*******Employee Year of Birth : %d******* ", k));
+			v.forEach(System.out::println);
+		});
 	}
 
 }
