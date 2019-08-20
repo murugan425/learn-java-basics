@@ -16,7 +16,7 @@ public class StreamExample2 {
 
     //Stream implementation to filter a list
     private static int sumStream(List<Integer> list) {
-        return list.stream().filter(i -> i > 10).mapToInt(i -> i).sum();
+        return list.stream().filter(i -> i > 10).mapToInt(i -> i).reduce(0, Integer::sum);
     }
 
     //Normal way of iteration. Not possible ot do parallel filter
