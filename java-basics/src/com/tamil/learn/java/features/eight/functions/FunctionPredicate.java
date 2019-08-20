@@ -3,11 +3,7 @@
  */
 package com.tamil.learn.java.features.eight.functions;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.tamil.learn.java.basics.vo.Employee;
