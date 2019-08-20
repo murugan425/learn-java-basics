@@ -44,8 +44,10 @@ public class StreamExample6 {
 		departments.stream().peek(dept->System.out.println("********"+dept.getName()+"********")).
 			flatMap(dept -> dept.getEmployees().stream()).forEach(System.out::println);
 		
-		List<Employee> employees = departments.stream().flatMap(dept -> dept.getEmployees().stream()).collect(Collectors.toList());
-		System.out.println("Totally, " + employees.size() + " Employees generated");	
+		List<Employee> employees = departments.stream().flatMap(dept -> dept.getEmployees().stream()).
+				sorted((e1,e2)->e1.getDob().compareTo(e2.getDob())).collect(Collectors.toList());
+		System.out.println("Totally, " + employees.size() + " Employees generated");
+		employees.forEach(System.out::println);			
 	}
 
 }
