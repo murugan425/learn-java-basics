@@ -26,9 +26,13 @@ public class FunctionPredicate {
 			emp.getName().toUpperCase(), emp.getDob(), Period.between(emp.getDob(), LocalDate.now()).getYears(), emp.getSalary());
 	
 	Function<Employee, String> formatEmpNoAge = (emp) -> 
-		String.format("%s dob is %s and he earns %02d $ per hour.", 
-			emp.getName().toUpperCase(), emp.getDob(), emp.getSalary());
-		
+		String.format("%s dob is %s and he earns %02d $ per hour.", emp.getName().toUpperCase(), emp.getDob(), emp.getSalary());
+	
+	Function<Employee, Employee> calcMonthlySal =  (emp) -> {emp.setSalary(emp.getSalary()*8*20); return emp;}; ///8hrs per day - 20 Working days
+
+	Function<Employee, String> formatEmpWithMonthlySal = (emp) -> 
+		String.format("%s dob is %s and he earns %02d $ per month.", emp.getName().toUpperCase(), emp.getDob(), emp.getSalary());
+	
 	//BiFunction can accept two inputs and produce one result which helps to chain multiple functions infact.
 	//We can even give the output of one function as the input of BiFunction
 	BiFunction<String, Employee, String> formatEmpWithAge = (empStr, emp) -> 
@@ -46,7 +50,10 @@ public class FunctionPredicate {
 	public void filterEmployeesByAge(List<Employee> employees, Predicate<Employee> minAge, Predicate<Employee> maxAge) {
 		employees.forEach(emp -> {
 			if(minAge.and(maxAge).test(emp)) {
+				//Nested Functions
 				System.out.println(formatEmpWithAge.apply(formatEmpNoAge.apply(emp), emp));
+				//Chained Functions				
+				System.out.println(calcMonthlySal.andThen(formatEmpWithMonthlySal).apply(emp));
 			}
 		});
 	}	
