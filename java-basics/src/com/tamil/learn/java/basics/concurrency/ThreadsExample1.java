@@ -4,7 +4,6 @@
 package com.tamil.learn.java.basics.concurrency;
 
 import static com.tamil.learn.java.basics.vo.AnsiColor.ANSI_BLUE;
-import static com.tamil.learn.java.basics.vo.AnsiColor.ANSI_PURPLE;
 import static com.tamil.learn.java.basics.vo.AnsiColor.ANSI_CYAN;
 /**
  * @author atpsmnn
@@ -34,7 +33,8 @@ public class ThreadsExample1 {
 				System.out.println(ANSI_CYAN + String.format("Primary Runnable anonymous impl in main class- %s", "Thread 4"));
 				try {
 					thread1.join();
-					System.out.println(ANSI_CYAN + thread1.getName() + " is completed & Thread 4 is awake again now");
+					//thread1.join(2000);
+					System.out.println(ANSI_CYAN + thread1.getName() + " is "+ thread1.getState().toString() +" & Thread 4 is awake again now");
 				} catch (InterruptedException e) {					
 					System.out.println(ANSI_CYAN + "Thread 4 was interrupted before " + thread1.getName() + " is completed");
 				}
