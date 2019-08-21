@@ -21,10 +21,12 @@ public class ThreadsExample1 {
 		thread2.setName("Second Thread");
 		
 		thread1.start(); //Primary thread instance is executed
-		thread2.start(); //Runs in the main thread not on a new thread instance
-		//thread1.start(); - java.lang.IllegalThreadStateException
+		thread2.run(); //Runs in the main thread not on a new thread instance
+		//thread1.start(); - java.lang.IllegalThreadStateException - can't start the same thread again
 		Thread thread3 = new Thread(new PrimaryRunnable());
 		thread3.start();
+		
+		thread1.interrupt();
 		System.out.println(ANSI_BLUE+"Main class ends");
 	}
 
