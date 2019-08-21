@@ -21,9 +21,12 @@ public class MultipleThreads {
 		thread1.setName("Thread1");
 		CountdownThread thread2 = new CountdownThread(counter);
 		thread2.setName("Thread2");
+		CountdownThread thread3 = new CountdownThread(counter);
+		thread3.setName("Thread3");
 		
 		thread1.start();
 		thread2.start();
+		thread3.start();
 	}
 
 }
