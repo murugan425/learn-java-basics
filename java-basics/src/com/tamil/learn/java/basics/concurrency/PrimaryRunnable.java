@@ -5,8 +5,6 @@ package com.tamil.learn.java.basics.concurrency;
 
 import static com.tamil.learn.java.basics.vo.AnsiColor.ANSI_PURPLE;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 /**
  * @author atpsmnn
  *

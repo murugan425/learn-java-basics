@@ -3,8 +3,6 @@
  */
 package com.tamil.learn.java.basics.concurrency;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 import static com.tamil.learn.java.basics.vo.AnsiColor.ANSI_RED;
 
 /**
@@ -15,6 +13,12 @@ public class PrimaryThread extends Thread {
 
 	@Override
 	public void run() {
-		System.out.println(ANSI_RED+String.format("Primary Thread - %s", currentThread().getName()));				
+		System.out.println(ANSI_RED+String.format("Primary Thread - %s", currentThread().getName()));
+		try {
+			Thread.sleep(3000);
+		}catch (InterruptedException e) {
+			System.out.println(ANSI_RED + currentThread().getName() + " Interrupted and awake before 3 seconds.");
+		}
+		System.out.println(ANSI_RED + "3 Seconds completed. " + currentThread().getName() + " awake.");
 	}
 }
