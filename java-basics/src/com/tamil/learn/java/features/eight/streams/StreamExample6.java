@@ -49,14 +49,27 @@ public class StreamExample6 {
 		System.out.println("Totally, " + employees.size() + " Employees generated");
 		employees.forEach(System.out::println);
 		
+		//Group the employees in all departments based on their year of birth
 		Map<Integer, List<Employee>> employeesByAge = departments.stream().flatMap(dept -> dept.getEmployees().stream()).
 				sorted((e1,e2)->e1.getDob().compareTo(e2.getDob())).
-				collect(Collectors.groupingBy(emp -> emp.getDob().getYear()));
-		employeesByAge.entrySet().forEach(empEntry -> System.out.println(empEntry.getKey()));
+				collect(Collectors.groupingBy(emp -> emp.getDob().getYear()));				
 		employeesByAge.forEach((k,v)->{
 			System.out.println(String.format("*******Employee Year of Birth : %d******* ", k));
 			v.forEach(System.out::println);
-		});
+		});	
+		System.out.println(String.format("*******Highly paid Employee*******"));
+		employees.stream().reduce((e1,e2) -> e1.getSalary() > e2.getSalary()?e1:e2).ifPresent(System.out::println);
+		//Find the youngest employee in each department
+		System.out.println(String.format("*******Youngest Employee*******"));
+		departments.stream().flatMap(dept -> dept.getEmployees().stream()).
+			reduce((e1,e2) -> e1.getDob().isBefore(e2.getDob())?e1:e2).
+			ifPresent(System.out::println);
+		
+		System.out.println(String.format("*******Youngest Employee in a specific department*******"));
+		departments.stream().filter(dept -> "HR".equals(dept.getName())).
+			flatMap(dept -> dept.getEmployees().stream()).
+			reduce((e1,e2) -> e1.getDob().isBefore(e2.getDob())?e1:e2).
+			ifPresent(System.out::println);
 	}
 
 }

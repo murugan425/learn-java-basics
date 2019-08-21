@@ -31,7 +31,7 @@ public class FunctionSupplier {
 	};
 	
 	@SuppressWarnings("static-access")
-	public Supplier<List<Employee>> empSupplier = () -> IntStream.range(0, Integer.valueOf(randStr.randomNumeric(1))+1).
+	public Supplier<List<Employee>> empSupplier = () -> IntStream.range(0, Integer.valueOf(randStr.randomNumeric(2))+1).
 			mapToObj(o -> new Employee(randStr.randomAlphabetic(10), Integer.valueOf(randStr.randomNumeric(2)), dateSupplier.get())).collect(Collectors.toList()); 
 	
 }
