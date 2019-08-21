@@ -34,9 +34,9 @@ public class ThreadsExample1 {
 				try {
 					thread1.join();
 					//thread1.join(2000);
-					System.out.println(ANSI_CYAN + thread1.getName() + " is "+ thread1.getState().toString() +" & Thread 4 is awake again now");
+					System.out.println(ANSI_CYAN + thread1.getName() + " is "+ thread1.getState().toString() + " & " + Thread.currentThread().getName() + " is awake again now");
 				} catch (InterruptedException e) {					
-					System.out.println(ANSI_CYAN + "Thread 4 was interrupted before " + thread1.getName() + " is completed");
+					System.out.println(ANSI_CYAN + Thread.currentThread().getName() + " was interrupted before " + thread1.getName() + " is completed");
 				}
 			}
 		});
