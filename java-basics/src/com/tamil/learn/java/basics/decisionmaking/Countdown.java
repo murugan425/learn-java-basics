@@ -12,6 +12,7 @@ import com.tamil.learn.java.basics.vo.AnsiColor;
  *
  */
 public class Countdown {
+	private Integer i;
 	
 	public void countdown() {
 		String color = AnsiColor.ANSI_BLACK;		
@@ -25,7 +26,10 @@ public class Countdown {
 			default:
 				color = AnsiColor.ANSI_GREEN;
 		}
-		final String threadColor = color;
-		IntStream.range(0, 20).forEach(i -> System.out.println(threadColor + Thread.currentThread().getName() + " : i = "+i));
+		//final String threadColor = color;
+		//IntStream.range(0, 20).forEach(i -> System.out.println(threadColor + Thread.currentThread().getName() + " : i = "+i));
+		for(i=100; i>0; i--) {		
+			System.out.println(color + Thread.currentThread().getName() + " : i = "+i);
+		}		
 	}	
 }
