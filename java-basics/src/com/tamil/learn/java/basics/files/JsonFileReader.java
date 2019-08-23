@@ -33,7 +33,7 @@ public class JsonFileReader {
 
 		URL url = getClass().getResource("datasource.json");
 		File file = new File(url.getPath());
-        List<String> locations = new ArrayList<String>();       
+        List<String> dataItems = new ArrayList<String>();       
        
         JsonFactory jfactory = new JsonFactory();
         try {
@@ -43,7 +43,7 @@ public class JsonFileReader {
 				if(dataItem.equals(fieldname)) {
 					jParser.nextToken();
 			        while (jParser.nextToken() != JsonToken.END_ARRAY) {
-			        	locations.add(jParser.getText());
+			        	dataItems.add(jParser.getText());
 			        }
 				}				
 	        }			
@@ -54,7 +54,10 @@ public class JsonFileReader {
 			log.error("Exception occurred while reading the Json file" + e.getMessage());
 		}
         System.out.println(String.format("List of %s retreived from JSON datasource", dataItem));
-        locations.forEach(System.out::println);
+        dataItems.forEach(System.out::println);
+        //System.out.println(dataItems.stream().count());
+        //System.out.println(dataItems.stream().distinct().count());
+        //dataItems.stream().distinct().forEach(loc -> System.out.println(String.format("\"%s\",", loc)));
 	}
 
 }
