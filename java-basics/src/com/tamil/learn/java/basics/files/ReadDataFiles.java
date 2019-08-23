@@ -14,7 +14,8 @@ public class ReadDataFiles {
 	 */
 	public static void main(String[] args) {
 		JsonFileReader reader = new JsonFileReader();
-		reader.readJsonData();
+		reader.readJsonData("locations");
+		reader.readJsonData("weekdays");
 	}
 
 }
