@@ -12,9 +12,11 @@ import com.tamil.learn.java.basics.vo.AnsiColor;
  *
  */
 public class Countdown {
-	private Integer i;
+	private int i;
 	
-	public void countdown() {
+	// Synchronize the method to avoid race condition
+	// Threads accessing the same shared resources leads to unpredictable results
+	public synchronized void countdown() {
 		String color = AnsiColor.ANSI_BLACK;		
 		switch(Thread.currentThread().getName()) {
 			case "Thread1": 
@@ -28,8 +30,7 @@ public class Countdown {
 		}
 		//final String threadColor = color;
 		//IntStream.range(0, 20).forEach(i -> System.out.println(threadColor + Thread.currentThread().getName() + " : i = "+i));
-		for(i=100; i>0; i--) {		
 			System.out.println(color + Thread.currentThread().getName() + " : i = "+i);
-		}		
-	}	
-}
+	}		
+}	
+
