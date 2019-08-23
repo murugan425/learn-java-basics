@@ -16,6 +16,9 @@ public class ReadDataFiles {
 		JsonFileReader reader = new JsonFileReader();
 		reader.readJsonData("locations");
 		reader.readJsonData("weekdays");
+		
+		reader.streamJsonData("locations");
+		reader.streamJsonData("weekdays");
 	}
 
 }
